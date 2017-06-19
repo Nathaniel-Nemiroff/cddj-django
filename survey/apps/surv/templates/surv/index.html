@@ -1,0 +1,12 @@
+<html>
+	<body>
+		<form action='/process' method='post'>
+			{% csrf_token %}
+			Your Name: <input type=text name='name'>
+			Dojo Location: <input type=text name='loc'>
+			Fav lang: <input type=text name='lan'>
+			comment: <input type=textarea name='comm'>
+			<input type=submit value="Submit">
+		</form>
+	</body>
+</html>

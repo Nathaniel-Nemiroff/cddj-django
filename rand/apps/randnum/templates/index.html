@@ -1,0 +1,19 @@
+<html>
+	<body>
+		<h1>random number</h1>
+		<p>(it's easier to do random numbers)</p>
+		<p>generation #{{hit}}</p>
+
+		<hr>
+
+		<p>{{value}}</p>
+
+		<hr>
+
+		<form action='/' method='post'>
+			{% csrf_token %}
+			<input type='submit' value='Generate'>
+		</form>
+		
+	</body>
+</html>
