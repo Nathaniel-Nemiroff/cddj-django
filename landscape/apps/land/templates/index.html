@@ -1,0 +1,13 @@
+<html>
+	<head>
+	{% load staticfiles %}
+	<link rel='stylesheet' href="{% static 'css/style.css' %}">
+	</head>
+	<body>
+		{% if chk == True %}
+			<img src="{% static file %}">
+		{% else %}
+				<p>Welcome, enter a number 1-50 as a url!</p>
+		{% endif %}
+	</body>
+</html>
