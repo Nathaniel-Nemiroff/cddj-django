@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<title>wall</title>
+		<link rel='stylesheet' type='text/css' href='/static/style.css'>
+	</head>
+	<body>
+		{% if message %}
+			<p>{{message}}<p>
+			<form action='/logout' method='POST'>
+				{% csrf_token %}
+				<input type='submit' value='Logout'>
+			</form>	
+		{% else %}
+			<form action='/register'>
+				{% csrf_token %}
+				<input type='submit' value='Register'>
+			</form>
+		<form action='/login'>
+			{% csrf_token %}
+			<input type='submit' value='Login'>
+		</form>
+		{% endif %}
+
+		<h3>Post a message</h3>
+		<form action='/newmsg' method='POST'>
+			{% csrf_token %}
+			<input type='textarea' name='newmsg'>
+			<input type='submit' value='Post message!'>
+		</form>
+
+
+		{% if user_messages %}
+			{% for msg in user_messages %}
+				<hr>
+					<h4>{{msg.user_id.first_name}} {{msg.user_id.last_name}} - {{msg.created_at}}</h4>
+					<p>{{msg.message}}</p>
+
+					{% if msg %}
+						{% for comment in msg.commentlist %}
+							<h5>{{comment.user_id.first_name}} {{comment.user_id.last_name}} - {{comment.created_at}}</h5>
+							<p>{{comment.comment}}</p>
+						{% endfor %}
+						<h3>Post a comment</h3>
+						<form action='/newcmnt' method='POST'>
+							{% csrf_token %}
+							<input type='hidden' name='msgnum' value='{{msg.id}}'>
+							<input type='textarea' name='newcmnt'>
+							<input type='submit' value='Post comment!'>
+						</form>
+					{% endif %}
+
+			{% endfor %}
+		{% endif %}
+	</body>
+</html>
