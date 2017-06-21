@@ -1,0 +1,28 @@
+<html>
+	<body>
+		{% if fail %}
+			<h2>Username is NOT valid</h2>
+		{% endif %}
+		{% if success %}
+			<h2>Username IS valid, Congrats!</h2>
+		{% endif %}
+
+		<form action='/' method='post'>
+			{% csrf_token %}
+			Username: <input type=text name='usr'>
+			<input type=submit value="Submit">
+		</form>
+
+		{% if success %}
+			<p>Usernames Entered<p>
+			<table>
+			{% for u in users %}
+				<tr>
+					<td>{{u.email}}</td>
+					<td>{{u.created_at}}</td>
+				</tr>
+			{% endfor %}
+			</table>
+		{% endif %}
+	</body>
+</html>
